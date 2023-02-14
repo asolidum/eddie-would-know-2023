@@ -3,7 +3,7 @@ import pandas as pd
 def get_average_ages(surfers):
     avg_ages = dict()
 
-    avg_ages['all'] = surfers[['Age']].mean()
+    avg_ages['all'] = surfers[['Age']].mean()[0]
     avg_ages['male'] = surfers.loc[surfers['Category'] == 'M']['Age'].mean()
     avg_ages['female'] = surfers.loc[surfers['Category'] == 'F']['Age'].mean()
 
