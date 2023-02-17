@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def get_average_ages(surfers):
     avg_ages = dict()
@@ -17,3 +18,5 @@ stance = surfers['Stance'].value_counts(normalize=True) * 100
 
 avg_ages = get_average_ages(surfers)
 
+surfers.plot.hist(column=['Age'], bins=[10,20,30,40,50,60,70])
+plt.show()
