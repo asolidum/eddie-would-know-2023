@@ -12,10 +12,12 @@ def get_average_ages(surfers):
 
 def plot_age_histogram(surfers):
     age_bins = [10,20,30,40,50,60,70]
-    alpha=0.8
+    alpha=0.6
+    male_color = 'blue'
+    female_color = 'yellow'
 
-    plt.hist(surfers.loc[surfers['Category'] == 'M']['Age'], bins=age_bins, alpha=alpha, label='Men')
-    plt.hist(surfers.loc[surfers['Category'] == 'F']['Age'], bins=age_bins, alpha=alpha, label='Women')
+    plt.hist(surfers.loc[surfers['Category'] == 'M']['Age'], bins=age_bins, alpha=alpha, color=male_color, label='Men')
+    plt.hist(surfers.loc[surfers['Category'] == 'F']['Age'], bins=age_bins, alpha=alpha, color=female_color, label='Women')
     plt.legend(loc='upper right')
     plt.show()
 
