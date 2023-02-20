@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 def get_male_ages(surfers):
@@ -39,7 +40,7 @@ def plot_home_towns(surfers):
 
     # plot
     fig, ax = plt.subplots(figsize=(7, 7))
-    ax.set_title('2022 Tag Breakdown')
+    ax.set_title('Surfer Hometowns')
     patches, texts, pcts  = ax.pie(
         x, colors=colors, labels=labels,
         autopct='%.1f%%', pctdistance=.83,
