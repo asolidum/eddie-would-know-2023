@@ -60,7 +60,6 @@ category = surfers['Category'].value_counts(normalize=True) * 100
 home = surfers['Home'].value_counts(normalize=True) * 100
 stance = surfers['Stance'].value_counts(normalize=True) * 100
 
-avg_ages = get_average_ages(surfers)
 plot_age_histogram(surfers)
 plot_home_towns(surfers)
 
