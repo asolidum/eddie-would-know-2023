@@ -32,6 +32,27 @@ def plot_age_histogram(surfers):
     plt.legend(loc='upper right')
     plt.show()
 
+def plot_home_towns(surfers):
+    x = surfers['Home'].value_counts().values
+    labels = surfers['Home'].value_counts().index
+    colors = plt.get_cmap('Paired')(np.linspace(0.1, 0.8, len(x)))
+
+    # plot
+    fig, ax = plt.subplots(figsize=(7, 7))
+    ax.set_title('2022 Tag Breakdown')
+    patches, texts, pcts  = ax.pie(
+        x, colors=colors, labels=labels,
+        autopct='%.1f%%', pctdistance=.83,
+        labeldistance=1.1,
+    wedgeprops={"linewidth": 3, "edgecolor": "white"}, frame=False)
+    for i, patch in enumerate(patches):
+        texts[i].set_color(patch.get_facecolor())
+
+    plt.setp(texts, fontweight=600)
+    plt.setp(pcts, color='white', fontweight=600)
+
+    plt.show()
+
 surfers = pd.read_csv("surfers.csv")
 
 category = surfers['Category'].value_counts(normalize=True) * 100
@@ -40,4 +61,5 @@ stance = surfers['Stance'].value_counts(normalize=True) * 100
 
 avg_ages = get_average_ages(surfers)
 plot_age_histogram(surfers)
+plot_home_towns(surfers)
 
