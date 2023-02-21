@@ -17,19 +17,22 @@ def get_average_ages(surfers):
 
     return avg_ages
 
-def plot_age_histogram(surfers):
+def plot_age_category_distribution(ages, avg_age, color, label):
     age_bins = [10,20,30,40,50,60,70]
     alpha=0.6
     mean_line_width=2
-    male_color = 'blue'
-    female_color = 'yellow'
 
+    # Display age distribution
+    plt.hist(ages, bins=age_bins, alpha=alpha, color=color, label=label)
+    # Display average age as dashed line
+    plt.axvline(avg_age, color=color, linestyle='dashed', linewidth=mean_line_width)
+
+def plot_age_distributions(surfers):
     avg_ages = get_average_ages(surfers)
 
-    plt.hist(get_male_ages(surfers), bins=age_bins, alpha=alpha, color=male_color, label='Men')
-    plt.axvline(avg_ages['male'], color=male_color, linestyle='dashed', linewidth=mean_line_width)
-    plt.hist(get_female_ages(surfers), bins=age_bins, alpha=alpha, color=female_color, label='Women')
-    plt.axvline(avg_ages['female'], color=female_color, linestyle='dashed', linewidth=mean_line_width)
+    plot_age_category_distribution(get_male_ages(surfers), avg_ages['male'], 'blue', 'Men')
+    plot_age_category_distribution(get_female_ages(surfers), avg_ages['female'], 'yellow', 'Women')
+
     plt.legend(loc='upper right')
     plt.show()
 
@@ -60,6 +63,5 @@ category = surfers['Category'].value_counts(normalize=True) * 100
 home = surfers['Home'].value_counts(normalize=True) * 100
 stance = surfers['Stance'].value_counts(normalize=True) * 100
 
-plot_age_histogram(surfers)
+plot_age_distributions(surfers)
 plot_home_towns(surfers)
-
