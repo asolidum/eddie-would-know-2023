@@ -33,7 +33,8 @@ def plot_age_distributions(surfers):
     plot_age_category_distribution(get_male_ages(surfers), avg_ages['male'], 'blue', 'Men')
     plot_age_category_distribution(get_female_ages(surfers), avg_ages['female'], 'yellow', 'Women')
 
-    plt.legend(loc='upper right')
+    ax = plt.legend(loc='upper right')
+    ax.set_title('Surfer Ages')
     plt.show()
 
 def plot_home_towns(surfers):
