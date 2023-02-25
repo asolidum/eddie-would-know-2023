@@ -58,6 +58,26 @@ def plot_home_towns(surfers):
 
     plt.show()
 
+def plot_stances(surfers):
+    grp = surfers.groupby(['Category', 'Stance'], sort=False)['Stance'].count()
+    grp.sort_index(ascending=False)
+    female_surfers = grp['F'].values
+    male_surfers = grp['M'].values
+
+    fig, ax = plt.subplots(figsize=(7, 7))
+    ax.set_label('Stance')  
+
+    barWidth = 0.5
+    alpha = 0.5
+    stances = ['Regular', 'Goofy']
+
+    # Display stacked bar chart
+    female_bargraph = ax.bar(stances, female_surfers, width=barWidth, alpha=alpha, color='yellow', label=stances[0])
+    ax.bar_label(female_bargraph, label_type='center')
+    male_bargraph = ax.bar(stances, male_surfers, bottom=female_surfers, width=barWidth, alpha=alpha, color='blue', label=stances[1])
+    ax.bar_label(male_bargraph, label_type='center')
+    plt.show()
+
 surfers = pd.read_csv("surfers.csv")
 
 category = surfers['Category'].value_counts(normalize=True) * 100
@@ -66,3 +86,4 @@ stance = surfers['Stance'].value_counts(normalize=True) * 100
 
 plot_age_distributions(surfers)
 plot_home_towns(surfers)
+plot_stances(surfers)
