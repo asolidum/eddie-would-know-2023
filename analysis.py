@@ -76,6 +76,7 @@ def plot_stances(surfers):
     ax.bar_label(female_bargraph, label_type='center')
     male_bargraph = ax.bar(stances, male_stances, bottom=female_stances, width=barWidth, alpha=alpha, color='blue', label=stances[1])
     ax.bar_label(male_bargraph, label_type='center')
+    ax.legend([male_bargraph, female_bargraph], ["Men", "Women"])
     plt.show()
 
 surfers = pd.read_csv("surfers.csv")
