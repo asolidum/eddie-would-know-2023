@@ -65,7 +65,7 @@ def plot_stances(surfers):
     male_stances = grp['M'].values
 
     fig, ax = plt.subplots(figsize=(7, 7))
-    ax.set_label('Stance')  
+    ax.set_title('Surfer Stances')
 
     barWidth = 0.5
     alpha = 0.5
