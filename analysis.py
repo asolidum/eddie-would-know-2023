@@ -61,8 +61,8 @@ def plot_home_towns(surfers):
 def plot_stances(surfers):
     grp = surfers.groupby(['Category', 'Stance'], sort=False)['Stance'].count()
     grp.sort_index(ascending=False)
-    female_surfers = grp['F'].values
-    male_surfers = grp['M'].values
+    female_stances = grp['F'].values
+    male_stances = grp['M'].values
 
     fig, ax = plt.subplots(figsize=(7, 7))
     ax.set_label('Stance')  
@@ -72,9 +72,9 @@ def plot_stances(surfers):
     stances = ['Regular', 'Goofy']
 
     # Display stacked bar chart
-    female_bargraph = ax.bar(stances, female_surfers, width=barWidth, alpha=alpha, color='yellow', label=stances[0])
+    female_bargraph = ax.bar(stances, female_stances, width=barWidth, alpha=alpha, color='yellow', label=stances[0])
     ax.bar_label(female_bargraph, label_type='center')
-    male_bargraph = ax.bar(stances, male_surfers, bottom=female_surfers, width=barWidth, alpha=alpha, color='blue', label=stances[1])
+    male_bargraph = ax.bar(stances, male_stances, bottom=female_stances, width=barWidth, alpha=alpha, color='blue', label=stances[1])
     ax.bar_label(male_bargraph, label_type='center')
     plt.show()
 
