@@ -58,6 +58,16 @@ def plot_home_towns(surfers):
 
     plt.show()
 
+def add_category_bargraph(ax, stances, bottom, color):
+    barWidth = 0.5
+    alpha = 0.5
+    stance_types = ['Regular', 'Goofy']
+
+    category_bargraph = ax.bar(stance_types, stances, bottom=bottom, width=barWidth, alpha=alpha, color=color)
+    ax.bar_label(category_bargraph, label_type='center')
+
+    return category_bargraph
+
 def plot_stances(surfers):
     grp = surfers.groupby(['Category', 'Stance'], sort=False)['Stance'].count()
     grp.sort_index(ascending=False)
@@ -67,15 +77,9 @@ def plot_stances(surfers):
     fig, ax = plt.subplots(figsize=(7, 7))
     ax.set_title('Surfer Stances')
 
-    barWidth = 0.5
-    alpha = 0.5
-    stances = ['Regular', 'Goofy']
-
     # Display stacked bar chart
-    female_bargraph = ax.bar(stances, female_stances, width=barWidth, alpha=alpha, color='yellow', label=stances[0])
-    ax.bar_label(female_bargraph, label_type='center')
-    male_bargraph = ax.bar(stances, male_stances, bottom=female_stances, width=barWidth, alpha=alpha, color='blue', label=stances[1])
-    ax.bar_label(male_bargraph, label_type='center')
+    female_bargraph = add_category_bargraph(ax, female_stances, 0, "yellow")
+    male_bargraph = add_category_bargraph(ax, male_stances, female_stances, "blue")
     ax.legend([male_bargraph, female_bargraph], ["Men", "Women"])
     plt.show()
 
