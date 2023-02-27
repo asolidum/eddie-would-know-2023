@@ -17,6 +17,17 @@ def get_average_ages(surfers):
 
     return avg_ages
 
+def get_category_stances(surfers):
+    stances = dict()
+
+    grp = surfers.groupby(['Category', 'Stance'], sort=False)['Stance'].count()
+    grp.sort_index(ascending=False)
+    
+    stances['female'] = grp['F'].values
+    stances['male'] = grp['M'].values
+
+    return stances
+
 def plot_age_category_distribution(ages, avg_age, color, label):
     age_bins = [10,20,30,40,50,60,70]
     alpha=0.6
@@ -69,17 +80,14 @@ def add_category_bargraph(ax, stances, bottom, color):
     return category_bargraph
 
 def plot_stances(surfers):
-    grp = surfers.groupby(['Category', 'Stance'], sort=False)['Stance'].count()
-    grp.sort_index(ascending=False)
-    female_stances = grp['F'].values
-    male_stances = grp['M'].values
+    stances = get_category_stances(surfers)
 
     fig, ax = plt.subplots(figsize=(7, 7))
     ax.set_title('Surfer Stances')
 
     # Display stacked bar chart
-    female_bargraph = add_category_bargraph(ax, female_stances, 0, "yellow")
-    male_bargraph = add_category_bargraph(ax, male_stances, female_stances, "blue")
+    female_bargraph = add_category_bargraph(ax, stances['female'], 0, "yellow")
+    male_bargraph = add_category_bargraph(ax, stances['male'], stances['female'], "blue")
     ax.legend([male_bargraph, female_bargraph], ["Men", "Women"])
     plt.show()
 
