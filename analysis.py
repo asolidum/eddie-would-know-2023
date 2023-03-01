@@ -51,21 +51,32 @@ def plot_age_distributions(surfers):
 def plot_home_towns(surfers):
     x = surfers['Home'].value_counts().values
     labels = surfers['Home'].value_counts().index
+
+    # plot settings
+    fig_width = 7
+    fig_height = 7
+    pctdistance = .83
+    labeldistance= 1.1
+    fontweight = 600
+    wedge_linewidth = 3
+    wedge_edgecolor = "white"
     colors = plt.get_cmap('Paired')(np.linspace(0.1, 0.8, len(x)))
+    pct_color = "white"
 
     # plot
-    fig, ax = plt.subplots(figsize=(7, 7))
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
     ax.set_title('Surfer Hometowns')
     patches, texts, pcts  = ax.pie(
         x, colors=colors, labels=labels,
-        autopct='%.1f%%', pctdistance=.83,
-        labeldistance=1.1,
-    wedgeprops={"linewidth": 3, "edgecolor": "white"}, frame=False)
+        autopct='%.1f%%', pctdistance=pctdistance,
+        labeldistance=labeldistance,
+        wedgeprops={"linewidth": wedge_linewidth,
+        "edgecolor": wedge_edgecolor}, frame=False)
     for i, patch in enumerate(patches):
         texts[i].set_color(patch.get_facecolor())
 
-    plt.setp(texts, fontweight=600)
-    plt.setp(pcts, color='white', fontweight=600)
+    plt.setp(texts, fontweight=fontweight)
+    plt.setp(pcts, color=pct_color, fontweight=fontweight)
 
     plt.show()
 
