@@ -28,6 +28,9 @@ def get_category_stances(surfers):
 
     return stances
 
+def get_heat(round_data, heat_num):
+    return round_data.loc[round_data['Heat'] == heat_num]
+
 def plot_age_category_distribution(ages, avg_age, color, label):
     age_bins = [10,20,30,40,50,60,70]
     alpha=0.6
