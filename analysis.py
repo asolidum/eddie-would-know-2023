@@ -103,6 +103,9 @@ def plot_stances(surfers):
     plt.show()
 
 surfers = pd.read_csv("surfers.csv")
+round1 = pd.read_csv("round1.csv").fillna(0)
+round2 = pd.read_csv("round2.csv").fillna(0)
+
 
 category = surfers['Category'].value_counts(normalize=True) * 100
 home = surfers['Home'].value_counts(normalize=True) * 100
