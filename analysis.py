@@ -105,12 +105,14 @@ def plot_stances(surfers):
     ax.legend([male_bargraph, female_bargraph], ["Men", "Women"])
     plt.show()
 
-def get_surfer_heat_total(surfer_heat_data):
-    return surfer_heat_data['Int0'] + surfer_heat_data['Int1'] + \
-        surfer_heat_data['Int2'] + surfer_heat_data['Int3'] + \
-        surfer_heat_data['Int4'] + surfer_heat_data['Int5'] + \
-        surfer_heat_data['Int6'] + surfer_heat_data['Int7'] + \
-        surfer_heat_data['Int8'] + surfer_heat_data['Int9']
+def get_surfer_heat_total(round_num, surfer_heat_data):
+    end_range = 13 if round_num == 2 else 12
+    total = 0
+    for index in range(2, end_range):
+        total += surfer_heat_data[index]
+
+    return total
+
 
 surfers = pd.read_csv("surfers.csv")
 round1 = pd.read_csv("round1.csv").fillna(0)
