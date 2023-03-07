@@ -107,11 +107,9 @@ def plot_stances(surfers):
 
 def get_surfer_heat_total(round_num, surfer_heat_data):
     end_range = 13 if round_num == 2 else 12
-    total = 0
-    for index in range(2, end_range):
-        total += surfer_heat_data[index]
+    
+    return surfer_heat_data[range(2, end_range)].sum()
 
-    return total
 
 
 surfers = pd.read_csv("surfers.csv")
