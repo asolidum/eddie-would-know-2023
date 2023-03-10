@@ -122,8 +122,7 @@ def analyze_heat(round_num, heat_num, round_data):
     total = get_heat_total(round_num, heat_data)
 
     total_heat_intervals = 88 if round_num == 2 else 80
-    avg_score = round(total/total_heat_intervals, 2)
-    print(avg_score)
+    return round(total/total_heat_intervals, 2)
 
 surfers = pd.read_csv("surfers.csv")
 round1 = pd.read_csv("round1.csv").fillna(0)
