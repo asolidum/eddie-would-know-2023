@@ -129,10 +129,6 @@ round1 = pd.read_csv("round1.csv").fillna(0)
 round2 = pd.read_csv("round2.csv").fillna(0)
 
 
-category = surfers['Category'].value_counts(normalize=True) * 100
-home = surfers['Home'].value_counts(normalize=True) * 100
-stance = surfers['Stance'].value_counts(normalize=True) * 100
-
 plot_age_distributions(surfers)
 plot_home_towns(surfers)
 plot_stances(surfers)
