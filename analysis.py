@@ -121,8 +121,8 @@ def analyze_heat(round_num, heat_num, round_data):
     heat_data = get_heat(heat_num, round_data)
     total = get_heat_total(round_num, heat_data)
 
-    total_heat_intervals = 88 if round_num == 2 else 80
-    return round(total/total_heat_intervals, 2)
+    total_num_heat_intervals = 88 if round_num == 2 else 80
+    return round(total/total_num_heat_intervals, 2)
 
 surfers = pd.read_csv("surfers.csv")
 round1 = pd.read_csv("round1.csv").fillna(0)
