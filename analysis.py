@@ -117,7 +117,7 @@ def get_heat_total(round_num, heat_data):
 
     return total
 
-def analyze_heat(round_num, heat_num, round_data):
+def get_heat_interval_average(round_num, heat_num, round_data):
     heat_data = get_heat(heat_num, round_data)
     total = get_heat_total(round_num, heat_data)
 
