@@ -124,6 +124,13 @@ def get_heat_interval_average(round_num, heat_num, round_data):
     total_num_heat_intervals = 88 if round_num == 2 else 80
     return round(total/total_num_heat_intervals, 2)
 
+def get_interval_total(interval_num, heat_data):
+    total = 0
+    for index, row in heat_data.iterrows():
+        total += row[2+interval_num]
+
+    return total
+
 surfers = pd.read_csv("surfers.csv")
 round1 = pd.read_csv("round1.csv").fillna(0)
 round2 = pd.read_csv("round2.csv").fillna(0)
