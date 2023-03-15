@@ -139,3 +139,11 @@ round2 = pd.read_csv("round2.csv").fillna(0)
 plot_age_distributions(surfers)
 plot_home_towns(surfers)
 plot_stances(surfers)
+
+heat_totals = []
+for round in [round1, round2]:
+    for heat in range(1, 6):
+        for interval in range(0, 10):
+            heat_data = get_heat(heat, round1)
+            total = get_interval_total(interval, heat_data)
+            heat_totals.append(total)
