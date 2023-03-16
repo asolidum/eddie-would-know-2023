@@ -131,6 +131,18 @@ def get_interval_total(interval_num, heat_data):
 
     return total
 
+def get_heat_interval_totals(round1, round2):
+    heat_interval_totals = []
+    for round_data in [round1, round2]:
+        for heat in range(1, 6):
+            end_range = 11 if 'Int10' in round_data else 10
+            for interval in range(0, end_range):
+                heat_data = get_heat(heat, round_data)
+                total = get_interval_total(interval, heat_data)
+                heat_interval_totals.append(total)
+
+    return heat_interval_totals
+
 surfers = pd.read_csv("surfers.csv")
 round1 = pd.read_csv("round1.csv").fillna(0)
 round2 = pd.read_csv("round2.csv").fillna(0)
@@ -139,11 +151,3 @@ round2 = pd.read_csv("round2.csv").fillna(0)
 plot_age_distributions(surfers)
 plot_home_towns(surfers)
 plot_stances(surfers)
-
-heat_totals = []
-for round in [round1, round2]:
-    for heat in range(1, 6):
-        for interval in range(0, 10):
-            heat_data = get_heat(heat, round1)
-            total = get_interval_total(interval, heat_data)
-            heat_totals.append(total)
