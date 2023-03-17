@@ -31,6 +31,9 @@ def get_category_stances(surfers):
 def get_heat(heat_num, round_data):
     return round_data.loc[round_data['Heat'] == heat_num]
 
+def get_num_intervals_in_round(round_data):
+    return 11 if 'Int10' in round_data else 10
+
 def plot_age_category_distribution(ages, avg_age, color, label):
     age_bins = [10,20,30,40,50,60,70]
     alpha=0.6
@@ -135,7 +138,7 @@ def get_heat_interval_totals(round1, round2):
     heat_interval_totals = []
     for round_data in [round1, round2]:
         for heat in range(1, 6):
-            end_range = 11 if 'Int10' in round_data else 10
+            end_range = get_num_intervals_in_round(round_data)
             for interval in range(0, end_range):
                 heat_data = get_heat(heat, round_data)
                 total = get_interval_total(interval, heat_data)
