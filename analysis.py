@@ -34,6 +34,9 @@ def get_heat(heat_num, round_data):
 def get_num_intervals_in_round(round_data):
     return 11 if 'Int10' in round_data else 10
 
+def get_end_range_by_round_num(round_num):
+    return 13 if round_num == 2 else 12
+
 def plot_age_category_distribution(ages, avg_age, color, label):
     age_bins = [10,20,30,40,50,60,70]
     alpha=0.6
@@ -109,7 +112,7 @@ def plot_stances(surfers):
     plt.show()
 
 def get_surfer_heat_total(round_num, surfer_heat_data):
-    end_range = 13 if round_num == 2 else 12
+    end_range = get_end_range_by_round_num(round_num)
     
     return surfer_heat_data[range(2, end_range)].sum()
 
