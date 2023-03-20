@@ -37,6 +37,9 @@ def get_num_intervals_in_round(round_data):
 def get_end_range_by_round_num(round_num):
     return 13 if round_num == 2 else 12
 
+def get_total_num_heat_intervals(round_num):
+    return 88 if round_num == 2 else 80
+
 def plot_age_category_distribution(ages, avg_age, color, label):
     age_bins = [10,20,30,40,50,60,70]
     alpha=0.6
@@ -127,7 +130,7 @@ def get_heat_interval_average(round_num, heat_num, round_data):
     heat_data = get_heat(heat_num, round_data)
     total = get_heat_total(round_num, heat_data)
 
-    total_num_heat_intervals = 88 if round_num == 2 else 80
+    total_num_heat_intervals = get_total_num_heat_intervals(round_num)
     return round(total/total_num_heat_intervals, 2)
 
 def get_interval_total(interval_num, heat_data):
