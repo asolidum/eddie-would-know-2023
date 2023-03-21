@@ -28,7 +28,7 @@ def get_category_stances(surfers):
 
     return stances
 
-def get_heat(heat_num, round_data):
+def get_heat_data(heat_num, round_data):
     return round_data.loc[round_data['Heat'] == heat_num]
 
 def get_num_intervals_in_round(round_data):
@@ -127,7 +127,7 @@ def get_heat_total(round_num, heat_data):
     return total
 
 def get_heat_interval_average(round_num, heat_num, round_data):
-    heat_data = get_heat(heat_num, round_data)
+    heat_data = get_heat_data(heat_num, round_data)
     total = get_heat_total(round_num, heat_data)
 
     total_num_heat_intervals = get_total_num_heat_intervals(round_num)
@@ -146,7 +146,7 @@ def get_heat_interval_totals(round1, round2):
         for heat in range(1, 6):
             end_range = get_num_intervals_in_round(round_data)
             for interval in range(0, end_range):
-                heat_data = get_heat(heat, round_data)
+                heat_data = get_heat_data(heat, round_data)
                 total = get_interval_total(interval, heat_data)
                 heat_interval_totals.append(total)
 
