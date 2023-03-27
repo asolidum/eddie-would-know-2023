@@ -152,6 +152,15 @@ def get_heat_interval_totals(round1, round2):
 
     return heat_interval_totals
 
+def get_heat_interval_averages(round1, round2):
+    heat_interval_avgs = []
+    for round_num in range(1, 3):
+        round_data = round1 if round_num == 1 else round2
+        for heat_num in range(1, 6):
+            heat_interval_avgs.append(get_heat_interval_average(round_num, heat_num, round_data))
+
+    return heat_interval_avgs
+
 surfers = pd.read_csv("surfers.csv")
 round1 = pd.read_csv("round1.csv").fillna(0)
 round2 = pd.read_csv("round2.csv").fillna(0)
@@ -162,8 +171,4 @@ plot_home_towns(surfers)
 plot_stances(surfers)
 heat_interval_totals = get_heat_interval_totals(round1, round2)
 
-heat_interval_avgs = []
-for round_num in range(1, 3):
-    round_data = round1 if round_num == 1 else round2
-    for heat_num in range(1, 6):
-        heat_interval_avgs.append(get_heat_interval_average(round_num, heat_num, round_data))
+heat_interval_avgs = get_heat_interval_averages(round1, round2)
